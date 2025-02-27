@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>优惠模板列表</title>
+</head>
+<body>
+<h1>优惠模板管理</h1>
+
+<a href="/system/toTemplateAdd">新增模板</a>
+<br/>
+<br/>
+<table border="1" style="width: 100%">
+    <tr>
+        <td>编号</td>
+        <td>模板的名称</td>
+        <td>模板的实现类</td>
+        <td>模板类型</td>
+        <td>模板的动态字段</td>
+    </tr>
+    <tr th:each="template : ${templates}">
+        <td th:text="${template.id}">编号</td>
+        <td th:text="${template.tname}">模板的名称</td>
+        <td th:text="${template.templateClass}">模板的实现类</td>
+        <td th:text="${template.templateType == 0 ? '规则模板' : '限制模板'}">模板类型</td>
+        <td th:text="${template.templateDynamic}">模板的动态字段</td>
+    </tr>
+</table>
+
+</body>
+</html>

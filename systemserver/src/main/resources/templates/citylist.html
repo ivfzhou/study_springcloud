@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>城市列表</title>
+</head>
+<body>
+<h1>城市列表</h1>
+<table border="1">
+    <tr>
+        <td>编号</td>
+        <td>名称</td>
+        <td>拼音</td>
+        <td>酒店数量</td>
+        <td>操作</td>
+    </tr>
+
+    <tr th:each="city : ${citys}">
+        <td th:text="${city.id}">编号</td>
+        <td th:text="${city.getName}">名称</td>
+        <td th:text="${city.getPinyin}">拼音</td>
+        <td th:text="${city.hotelNumber}">酒店数量</td>
+        <td>操作</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,45 @@
+server:
+  port: 8989
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      routes:
+        - id: city
+          uri: lb://micro-city
+          predicates:
+            - Path=/city/**
+        - id: hotel
+          uri: lb://micro-hotel
+          predicates:
+            - Path=/hotel/**
+        - id: search
+          uri: lb://micro-search
+          predicates:
+            - Path=/search/**
+        - id: user
+          uri: lb://micro-user
+          predicates:
+            - Path=/user/**
+        - id: order
+          uri: lb://micro-order
+          predicates:
+            - Path=/order/**,/pay/**
+        - id: coupon
+          uri: lb://micro-coupon
+          predicates:
+            - Path=/dic/**,/template/**,/coupon/**
+          filters:
+            - redisLimiter
+        - id: purchase
+          uri: lb://micro-purchase
+          predicates:
+            - Path=/purchase/get
+          filters:
+            - purchaseFilter
+            - redisLimiter
+        - id: purchase
+          uri: lb://micro-purchase
+          predicates:
+            - Path=/purchase/**

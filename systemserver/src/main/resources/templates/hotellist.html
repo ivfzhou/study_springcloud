@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="|${#request.getContextPath()}/|"/>
+    <meta charset="UTF-8">
+    <title>酒店列表</title>
+</head>
+<body>
+<h1>酒店列表</h1>
+<table border="1">
+    <tr>
+        <td>编号</td>
+        <td>名称</td>
+        <td>图片</td>
+        <td>城市（行政区域）</td>
+        <td>地址</td>
+        <td>品牌</td>
+        <td>操作</td>
+    </tr>
+
+    <tr th:each="hotel : ${hotels}">
+        <td th:text="${hotel.id}">编号</td>
+        <td th:text="${hotel.hotelName}">名称</td>
+        <td><img style="width: 120px; height: 90px" th:src="|/system/getImage?path=${hotel.hotelImage}|"/></td>
+        <td th:text="${hotel.city.getName + '(' + hotel.district + ')'}">城市（行政区域）</td>
+        <td th:text="${hotel.address}">地址</td>
+        <td th:text="${hotel.brand}">品牌</td>
+        <td><a th:href="${'/system/toroomadd?hid=' + hotel.id}">设置客房</a> <a
+                th:href="${'/system/roomlist?hid=' + hotel.id}">查看客房</a></td>
+    </tr>
+</table>
+</body>
+</html>

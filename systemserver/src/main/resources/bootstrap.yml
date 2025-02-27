@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:30000
+      name: eureka,system,log4j,rabbitmq
+      profile: local

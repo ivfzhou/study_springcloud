@@ -1,0 +1,8 @@
+logging:
+  config: classpath:log4j2.xml
+spring:
+  zipkin:
+    base-url: http://ivfzhou-ubuntu:9411 # 本地zipkin运行ip。
+  sleuth:
+    sampler:
+      probability: 0.5

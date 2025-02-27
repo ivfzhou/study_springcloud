@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加客房</title>
+</head>
+<body>
+<form action="/system/insertroom" method="post">
+    <input name="hid" th:value="${#request.getParameter('hid')}" type="hidden"/>
+    客房名称：<input name="title"/><br/>
+    客房面积：<input name="area"/><br/>
+    容纳人数：<input name="num"/><br/>
+    客房信息：<input name="info"/><br/>
+    床型：<input name="bed"/><br/>
+    房间数量：<input name="number"/><br/>
+    默认价格：<input name="defaultPrice"/><br/>
+    <button type="submit">保存</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="${#request.getContextPath() + '/'}"/>
+    <meta charset="UTF-8">
+    <title>房间价格调整</title>
+    <script src="resources/scripts/jquery-1.8.3.min.js"></script>
+    <script src="resources/widget/dialog/jquery-ui-1.9.2.custom.min.js"></script>
+    <link href="resources/widget/dialog/jquery-ui.min.css" media="screen" rel="stylesheet"
+          type="text/css"/>
+
+    <script>
+        //打开弹出框
+        function openDialog(rpid, rid, date, price, type) {
+            $("#rpid").val(rpid);
+            $("#date").html(date);
+            $("#price").val(price);
+            $("#rid").val(rid);
+            $("[name='type'][type='radio'][value='" + type + "']").attr("checked", true);
+
+            $("#price_dialog").dialog({
+                title: "调整价格",
+                width: 500,
+                height: 400,
+                modal: true
+            });
+        }
+    </script>
+
+</head>
+<body>
+
+<h1>调整房间价格</h1>
+
+<table border="1">
+    <tr>
+        <td>房型</td>
+        <td>日期</td>
+        <td>价格</td>
+        <td>预订数量</td>
+        <td>剩余数量</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="roomprice : ${roomprices}">
+        <td th:text="${roomprice.rid}">房型</td>
+        <td th:text="${#dates.format(roomprice.date, 'yyyy-MM-dd')}">日期</td>
+        <td th:text="${#numbers.formatCurrency(roomprice.price) + '(' + (roomprice.type == 0 ? '普通' : '特价') + ')'}">价格
+        </td>
+        <td th:text="${roomprice.number}">预订数量</td>
+        <td th:text="${roomprice.hasNumber}">剩余数量</td>
+        <td>
+            <button th:onclick="openDialog([[${roomprice.id}]], [[${roomprice.rid}]], [[${#dates.format(roomprice.date, 'yyyy-MM-dd')}]], [[${roomprice.price}]], [[${roomprice.type}]]);"
+                    type="button">
+                修改
+            </button>
+        </td>
+    </tr>
+</table>
+
+<div id="price_dialog" style="display: none;">
+    <form action="/system/updatepirce" method="post">
+        <input id="rpid" name="id" type="hidden"/>
+        <input id="rid" name="rid" type="hidden"/>
+        日期：<span id="date"></span><br/>
+        价格：<input id="price" name="price"/><br/>
+        类型：<input name="type" type="radio" value="0"/>普通 <input name="type" type="radio" value="1"/>特价<br/>
+        <button type="submit">提交</button>
+    </form>
+</div>
+
+</body>
+</html>

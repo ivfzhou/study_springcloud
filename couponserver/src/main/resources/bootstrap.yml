@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      uri: http://ivfzhou-ubuntu:30000
+      name: eureka,coupon,database,log4j2,redis,rabbitmq
+      profile: local

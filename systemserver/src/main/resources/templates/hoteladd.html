@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="${#request.getContextPath() + '/'}"/>
+    <meta charset="UTF-8">
+    <!-- 百度地图 -->
+    <meta content="initial-scale=1.0, user-scalable=no" name="viewport"/>
+    <title>酒店添加页面</title>
+
+    <!-- 弹出框插件 -->
+    <script src="resources/scripts/jquery-1.8.3.min.js"></script>
+    <script src="resources/widget/dialog/jquery-ui-1.9.2.custom.min.js"></script>
+    <!-- 百度地图 -->
+    <script src="http://api.map.baidu.com/api?v=3.0&ak=wRuD134wGGeWLLqbtPv2YNqoZa7AYuaE"
+            type="text/javascript"></script>
+
+    <link href="resources/widget/dialog/jquery-ui.min.css" media="screen" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #container {
+            height: 100%
+        }
+    </style>
+
+    <script>
+        // 打开地图 - 弹出框
+        function openMap() {
+            // 初始化地图
+            initMap();
+
+            // 弹出框
+            $("#mapdiv").dialog({
+                width: 900,
+                height: 700,
+                title: "百度地图",
+                modal: true
+            });
+        }
+
+        // 初始化地图
+        function initMap() {
+
+            var map = new BMap.Map("container");
+            // 获得当前选择的城市名称
+            var cityName = $("#cid option:selected").html();
+            map.centerAndZoom(cityName, 12);
+            map.enableScrollWheelZoom(true);
+
+            // 逆地址解析的对象
+            var geoc = new BMap.Geocoder();
+
+            // 设置点击时间
+            map.addEventListener("click", function (e) {
+                // 获得点击的坐标点位置
+                var point = e.point;
+                $("#lat").val(point.lat);
+                $("#lon").val(point.lng);
+
+                // 进行逆地址解析
+                geoc.getLocation(point, function (rs) {
+                    var addComp = rs.addressComponents;
+                    $("#address").val(addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);
+                });
+
+                // 清空标注物
+                map.clearOverlays();
+                // 设置标注物
+                var marker = new BMap.Marker(point);  // 创建标注
+                map.addOverlay(marker);               // 将标注添加到地图中
+                marker.setAnimation(BMAP_ANIMATION_BOUNCE); // 跳动的动画
+            });
+        }
+    </script>
+</head>
+<body>
+<h1>添加酒店</h1>
+<form action="/system/hotaladd" enctype="multipart/form-data" method="post">
+    酒店名称：<input name="hotalName"/><br/>
+    图片：<input name="image" type="file"/><br/>
+    类型：<select name="type">
+    <option value="0">快捷酒店</option>
+    <option value="1">星级酒店</option>
+    <option value="2">商务酒店</option>
+    <option value="3">主题酒店</option>
+</select><br/>
+    关键词：<input name="keyword"/><br/>
+    城市：<select id="cid" name="cid">
+    <option>--请选择--</option>
+    <option th:each="city : ${citys}" th:text="${city.getName}" th:value="${city.id}"></option>
+</select><br/>
+    行政区域：<input name="district"/><br/>
+    位置信息：<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;经度：<input id="lon" name="lon"/><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;纬度：<input id="lat" name="lat"/><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;地址：<input id="address" name="address"/><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;<button onclick="openMap();" type="button">打开地图</button>
+    <br/>
+    星级：<input name="star"/><br/>
+    品牌：<input name="brand"/><br/>
+    开业时间：<input name="openTime" type="date"/><br/>
+    酒店描述：<textarea cols="25" name="hotalInfo" rows="10"></textarea><br/>
+    <button type="submit">保存</button>
+</form>
+
+<!-- 弹出框 -->
+<div id="mapdiv" style="display: none">
+    <!-- 百度地图的容器 -->
+    <div id="container"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>客房列表</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>客房编号</td>
+        <td>客房名称</td>
+        <td>客房面积</td>
+        <td>容纳人数</td>
+        <td>床型</td>
+        <td>房间数量</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.id}">客房编号</td>
+        <td th:text="${room.title}">客房名称</td>
+        <td th:text="${room.area}">客房面积</td>
+        <td th:text="${room.num}">容纳人数</td>
+        <td th:text="${room.bed}">床型</td>
+        <td th:text="${room.number}">房间数量</td>
+        <td><a th:href="${'/system/toupdateprice?rid=' + room.id}">房价调整</a></td>
+    </tr>
+</table>
+</body>
+</html>

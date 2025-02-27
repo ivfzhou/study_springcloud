@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>优惠券列表</title>
+</head>
+<body>
+<h1>优惠券列表</h1>
+
+<a href="/system/toCouponAdd">新增优惠券</a><br/><br/>
+
+<table border="1" style="width: 100%">
+    <tr>
+        <td>编号</td>
+        <td>优惠券标题</td>
+        <td>副标题</td>
+        <td>互斥类型</td>
+        <td>说明</td>
+        <td>动态规则</td>
+        <td>动态限制</td>
+        <td>操作</td>
+    </tr>
+    <tr th:each="coupon : ${coupons}">
+        <td th:text="${coupon.id}">编号</td>
+        <td th:text="${coupon.subject}">优惠券标题</td>
+        <td th:text="${coupon.subtitle}">副标题</td>
+        <td th:text="${coupon.utype == 0 ? '互斥卷' : '叠加卷'}">互斥类型</td>
+        <td th:text="${coupon.content}">说明</td>
+        <td th:text="${coupon.ruleInfo}">动态规则</td>
+        <td th:text="${coupon.limitInfo}">动态限制</td>
+        <td><a th:href="|/system/toIssue?cid=${coupon.id}|">发布优惠券</a></td>
+    </tr>
+</table>
+</body>
+</html>

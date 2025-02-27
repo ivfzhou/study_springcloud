@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="${#request.getContextPath() + '/'}"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>添加城市</h1>
+<form action="/system/cityadd" method="post">
+    城市名称：<input name="cityName"/><br/>
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>

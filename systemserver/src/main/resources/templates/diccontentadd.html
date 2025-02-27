@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>字典内容新增</title>
+</head>
+<body>
+<h1>新增字典内容</h1>
+<form action="/system/diccontentinsert" method="post">
+    <input name="did" th:value="${#request.getParameter('did')}" type="hidden"/>
+    字典名称:<input name="name"/><br/>
+    字典数据:<input name="value"/><br/>
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>

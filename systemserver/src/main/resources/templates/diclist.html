@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>字典管理</title>
+</head>
+<body>
+<h1>字典管理</h1>
+
+<a href="/system/todicadd">添加字典</a>
+<br/>
+<br/>
+
+<table border="1" style="width: 100%">
+    <tr>
+        <td>编号</td>
+        <td>字典名称</td>
+        <td>可用状态</td>
+        <td>字典数据</td>
+        <td>操作</td>
+    </tr>
+
+    <tr th:each="dic : ${diclist}">
+        <td th:text="${dic.id}">编号</td>
+        <td th:text="${dic.name}">字典名称</td>
+        <td th:text="${dic.status == 0 ? '可用' : '禁用'}">可用状态</td>
+        <td>
+            <div th:each="content :${dic.contents}" th:text="${content.name + '-' + content.value}"></div>
+        </td>
+        <td><a th:href="|/system/todiccontentadd?did=${dic.id}|">新增字典数据</a></td>
+    </tr>
+
+</table>
+
+</body>
+</html>
