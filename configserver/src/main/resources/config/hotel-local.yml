@@ -1,5 +1,5 @@
 server:
-  port: 20003
+  port: 9004
 spring:
   application:
     name: micro-hotel

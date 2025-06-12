@@ -44,7 +44,8 @@
     <tr th:each="roomprice : ${roomprices}">
         <td th:text="${roomprice.rid}">房型</td>
         <td th:text="${#dates.format(roomprice.date, 'yyyy-MM-dd')}">日期</td>
-        <td th:text="${#numbers.formatCurrency(roomprice.price) + '(' + (roomprice.type == 0 ? '普通' : '特价') + ')'}">价格
+        <td th:text="${#numbers.formatCurrency(roomprice.price) + '(' + (roomprice.type == 0 ? '普通' : '特价') + ')'}">
+            价格
         </td>
         <td th:text="${roomprice.number}">预订数量</td>
         <td th:text="${roomprice.hasNumber}">剩余数量</td>

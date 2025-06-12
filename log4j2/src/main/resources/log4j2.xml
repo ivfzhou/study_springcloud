@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- status：log4j2 自身的日志输出级别。 -->
+<configuration status="ALL">
+    <!-- 日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL。 -->
+    <!-- 变量配置 -->
+    <Properties>
+        <!-- 格式化输出：
+            %date{<pattern>}：表示日期。
+            %d
+            %logger：logger 的名称。
+            %c
+            %p：日志输出格式。
+            %C：类名。
+            %L：行号。
+            %M：方法名。
+            %l：输出语句行号。
+            %hostName
+            %hostAddress
+            %thread：表示线程名。
+            %-5level：级别从左显示 5 个字符宽度。
+            %msg：日志消息。
+            %n：是换行符。
+            %logger{36}：表示 Logger 名字最长 36 个字符。
+
+            整合 sleuth：
+            %X{X-B3-TraceId}：当前请求链路 ID TraceId
+            %X{X-B3-SpanId}：当前节点 ID SpanId
+            %X{X-B3-ParentSpanId}：上一个节点 ID Parent_SpanId
+            %X{X-Span-Export}：是否被采样。
+            -->
+        <property name="LOG_PATTERN"
+                  value="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level %C:%L -- %msg%n"/>
+        <!-- 定义日志存储的路径，不要配置相对路径。 -->
+        <property name="FILE_PATH" value="logs"/>
+        <property name="FILE_NAME" value="${build.finalName}"/>
+    </Properties>
+
+    <!-- 定义输出器。 -->
+    <appenders>
+
+        <console name="Console" target="SYSTEM_OUT">
+            <!-- 输出日志的格式 -->
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <!-- 控制台只输出 level 及其以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="all" onMatch="ACCEPT" onMismatch="DENY"/>
+        </console>
+
+        <!-- 这个会打印出所有的 info 及以下级别的信息，每次大小超过 size，则这 size 大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档。 -->
+        <RollingFile name="RollingFileInfo" fileName="${FILE_PATH}/${FILE_NAME}-info.log"
+                     filePattern="${FILE_PATH}/${FILE_NAME}-INFO-%d{yyyy-MM-dd}_%i.log.gz">
+            <!-- 只输出 level 及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <!-- interval 属性用来指定多久滚动一次，默认是 1 小时 -->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!-- 属性如不设置，则默认为最多同一文件夹下 7 个文件开始覆盖 -->
+            <DefaultRolloverStrategy max="15"/>
+        </RollingFile>
+
+        <RollingFile name="RollingFileWarn" fileName="${FILE_PATH}/${FILE_NAME}-warn.log"
+                     filePattern="${FILE_PATH}/${FILE_NAME}-WARN-%d{yyyy-MM-dd}_%i.log.gz">
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="15"/>
+        </RollingFile>
+
+        <RollingFile name="RollingFileError" fileName="${FILE_PATH}/${FILE_NAME}-error.log"
+                     filePattern="${FILE_PATH}/${FILE_NAME}-ERROR-%d{yyyy-MM-dd}_%i.log.gz">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="15"/>
+        </RollingFile>
+
+    </appenders>
+
+    <!-- 然后定义 loggers，只有定义了 logger 并引入的 appender，appender 才会生效。 -->
+    <loggers>
+        <root level="info">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileInfo"/>
+            <appender-ref ref="RollingFileWarn"/>
+            <appender-ref ref="RollingFileError"/>
+        </root>
+        <!-- logger 节点用来单独指定日志的形式，比如要为指定包下的 class 指定不同的日志级别等。 -->
+        <logger name="java.sql.PreparedStatement" level="info"/>
+    </loggers>
+
+</configuration>

@@ -1,5 +1,5 @@
 server:
-  port: 20004
+  port: 9005
 spring:
   application:
     name: micro-order

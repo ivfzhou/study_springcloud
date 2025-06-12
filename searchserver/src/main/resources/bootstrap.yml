@@ -1,6 +1,6 @@
 spring:
   cloud:
     config:
-      uri: http://ivfzhou-ubuntu:30000
-      name: eureka,search,log4j2,rabbitmq,redis
+      uri: http://ivfzhoudebian:8080
+      name: eureka,log4j2,rabbitmq,redis,mysql,common,search
       profile: local

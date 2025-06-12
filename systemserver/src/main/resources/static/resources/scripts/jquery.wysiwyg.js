@@ -349,9 +349,9 @@
 
                         /**
                          var editor = $('<span></span>').css({
-                        width     : ( newX - 6 ).toString() + 'px',
-                        height    : ( newY - 8 ).toString() + 'px'
-                    }).attr('id', $(element).attr('id') + 'IFrame');
+                         width     : ( newX - 6 ).toString() + 'px',
+                         height    : ( newY - 8 ).toString() + 'px'
+                         }).attr('id', $(element).attr('id') + 'IFrame');
 
                          editor.outerHTML = this.editor.outerHTML;
                          */

@@ -45,10 +45,11 @@
 </select><br/>
 
     <div id="timeDiv" style="display: none; margin-top: 5px;">
-        定时抢购的开始时间：<input class="Wdate" name="goStartTime" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-                         onautocomplete="off" type="text"/><br/>
+        定时抢购的开始时间：<input class="Wdate" name="goStartTime"
+                                  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+                                  onautocomplete="off" type="text"/><br/>
         定时抢购的结束时间：<input class="Wdate" name="goStopTime" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-                         onautocomplete="off" type="text"/><br/>
+                                  onautocomplete="off" type="text"/><br/>
     </div>
 
     有效类型：<select name="type" onchange="updateType(this.value);">

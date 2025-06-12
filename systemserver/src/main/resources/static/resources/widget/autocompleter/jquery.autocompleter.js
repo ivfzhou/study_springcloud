@@ -803,7 +803,7 @@
                 if (code === 22) {
                     _deleteCache();
                 } else {
-                    throw(e);
+                    throw (e);
                 }
             }
         }
@@ -846,7 +846,7 @@
             localStorage.removeItem(localStorageKey);
             cache = _loadCache();
         } catch (e) {
-            throw(e);
+            throw (e);
         }
     }
 

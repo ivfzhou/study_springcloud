@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.ivfzhou.springcloud.couponserver.dao.CouponMapper">
+
+    <resultMap id="couponMap" type="cn.ivfzhou.springcloud.entity.db.Coupon">
+        <id column="id" property="id"/>
+        <result column="subject" property="subject"/>
+        <result column="subtitle" property="subTitle"/>
+        <result column="content" property="content"/>
+        <result column="rule_info" property="ruleInfo"/>
+        <result column="limit_info" property="limitInfo"/>
+        <result column="type" property="type"/>
+        <result column="priority" property="priority"/>
+        <result column="create_time" property="createTime"/>
+        <result column="status" property="status"/>
+        <result column="receive_count" property="receiveCount"/>
+
+        <association property="issue" javaType="cn.ivfzhou.springcloud.entity.db.CouponIssue">
+            <id column="coupon_issue_id" property="id"/>
+            <result column="coupon_id" property="cid"/>
+            <result column="method" property="method"/>
+            <result column="type" property="type"/>
+            <result column="begin_time" property="beginTime"/>
+            <result column="end_time" property="endTime"/>
+            <result column="days" property="days"/>
+            <result column="number" property="number"/>
+            <result column="go_start_time" property="goStartTime"/>
+            <result column="go_stop_time" property="goStopTime"/>
+        </association>
+
+    </resultMap>
+
+    <select id="getCouponByIssueType" resultMap="couponMap">
+        select
+            *,
+            t2.id as coupon_issue_id,
+            (select count(*) from t_coupon_receive where coupon_id = t1.id and user_id = #{userId}) as receive_count
+        from t_coupon t1
+        join t_coupon_issue t2 on t1.id = t2.coupon_id
+        where t2.method = #{method};
+    </select>
+
+
+    <select id="getCouponByUser" resultType="cn.ivfzhou.springcloud.entity.db.Coupon">
+        select * from t_coupon t1
+        join t_coupon_receive t2 on t2.coupon_id = t1.id
+        where t2.user_id = #{userId};
+    </select>
+
+    <select id="getCouponByTime" resultType="cn.ivfzhou.springcloud.entity.db.Coupon">
+        select
+            *,
+            t2.id as coupon_issue_id
+        from t_coupon t1
+        join t_coupon_issue t2 on t1.id = t2.coupon_id
+        where t2.method = #{method} and t2.go_start_time = #{time};
+    </select>
+
+</mapper>

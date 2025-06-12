@@ -1,0 +1,4 @@
+data:
+  jwt:
+    secret: 21laksdfiua42131giuwgelkwqjrlkjhadklsf21laksdf
+    timeout: 604800000

@@ -1,13 +1,4 @@
 server:
-  port: 20006
-spring:
-  elasticsearch:
-    rest:
-      read-timeout: 300s
-      connection-time: 3s
-      uris:
-        - http://ivfzhou-ubuntu:9200 # 本地的es运行地址。
-    #password: iwlgVFoZ2K7EeLVoZkOe
-    #username: elastic
+  port: 9007
   application:
     name: micro-search

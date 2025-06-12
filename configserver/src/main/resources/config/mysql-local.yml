@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://ivfzhoudebian:3306/db_${spring.application.name}?serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
+    username: ivfzhou
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl # org.apache.ibatis.logging.stdout.StdOutImpl # 开启 SQL 日志。
+  mapper-locations: classpath*:cn/ivfzhou/springcloud/*/dao/mapper/*.xml
+  type-aliases-package: cn.ivfzhou.springcloud.entity.db # 实体类所在包。

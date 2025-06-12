@@ -1,5 +1,7 @@
 spring:
-  redis:
-    host: ivfzhou-ubuntu # 本地redis运行地址。
-    port: 6379
-    password: 123456
+  data:
+    redis:
+      host: ivfzhoudebian # 本地 Redis 运行地址。
+      port: 6379
+      password: 123456
+      database: 0

@@ -1,5 +1,5 @@
 server:
-  port: 20002
+  port: 9003
 spring:
   application:
-    name: micro-coupon
+    name: coupon

@@ -1,6 +1,6 @@
 spring:
   cloud:
     config:
-      uri: http://localhost:30000
-      name: hotel,eureka,database,log4j,rabbitmq,redis
+      uri: http://ivfzhoudebian:8080
+      name: eureka,mysql,log4j,rabbitmq,redis,elasticsearch,common,hotel
       profile: local

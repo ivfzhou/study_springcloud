@@ -1,5 +1,5 @@
 server:
-  port: 20008
+  port: 9009
 spring:
   application:
     name: micro-user

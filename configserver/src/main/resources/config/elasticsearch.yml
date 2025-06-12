@@ -1,0 +1,9 @@
+spring:
+  elasticsearch:
+    rest:
+      read-timeout: 300s
+      connection-time: 3s
+      uris:
+        - http://ivfzhoudebian:9200 # 本地的 ES 运行地址。
+    password: 123456
+    username: elastic

@@ -1,6 +1,6 @@
 spring:
   rabbitmq:
-    host: ivfzhou-ubuntu # 本地rabbitmq运行地址。
+    host: ivfzhoudebian # 本地 RabbitMQ 运行地址。
     username: guest
     password: guest
     port: 5672

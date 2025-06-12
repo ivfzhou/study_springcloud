@@ -1,0 +1,13 @@
+server:
+  port: 8764
+spring:
+  application:
+    name: eureka-server2
+eureka:
+  instance:
+    hostname: ivfzhoudebian
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://ivfzhoudebian:8762/eureka/,http://ivfzhoudebian:8763/eureka/,http://ivfzhoudebian:8765/eureka/

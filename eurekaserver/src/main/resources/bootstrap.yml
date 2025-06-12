@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    config:
+      uri: http://ivfzhoudebian:8080
+      name: eureka_server
+      profile: local
