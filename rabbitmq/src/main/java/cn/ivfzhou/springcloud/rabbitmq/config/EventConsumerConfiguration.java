@@ -15,10 +15,14 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-@Slf4j
-@Configuration
-@ConditionalOnBean(EventListener.class)
-public class EventConsumerConfiguration {
+/**
+ * RabbitMQ 事件消费端配置类。
+ * <p>
+ * 自动为当前服务创建消息队列，并将队列与交换机通过事件类型（路由键）进行绑定。
+ * 通过扫描所有 {@link EventListener} 实现类，动态创建绑定关系。
+ * 仅在容器中存在 EventListener 实现类时生效（@ConditionalOnBean）。
+ * </p>
+ */
 
     @Value("${spring.application.name}")
     private String applicationName;
@@ -29,6 +33,12 @@ public class EventConsumerConfiguration {
     @Autowired
     private List<EventListener> eventListeners;
 
+    /**
+     * 创建消息队列。
+     * 队列名称格式：{应用名}-queue，持久化、非独占、非自动删除。
+     *
+     * @return 队列对象
+     */
     @Bean
     public Queue getQueue() {
         return new Queue(applicationName + "-queue", true, false, false);

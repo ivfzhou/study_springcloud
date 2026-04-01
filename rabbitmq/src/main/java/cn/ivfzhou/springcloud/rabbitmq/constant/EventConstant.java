@@ -1,5 +1,12 @@
 package cn.ivfzhou.springcloud.rabbitmq.constant;
 
+/**
+ * RabbitMQ 事件常量接口。
+ * <p>
+ * 定义系统中使用的交换机名称和所有事件类型常量。
+ * 事件类型同时作为 RabbitMQ 的路由键（RoutingKey）使用。
+ * </p>
+ */
 public interface EventConstant {
 
     /**

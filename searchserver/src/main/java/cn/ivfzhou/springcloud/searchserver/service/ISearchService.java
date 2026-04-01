@@ -12,7 +12,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public interface ISearchService {
+/**
+ * 搜索服务接口。
+ * <p>
+ * 定义了与 Elasticsearch 交互的所有操作方法，包括索引库的创建与删除、
+ * 酒店文档的增删改查、客房及价格信息的维护、数据库数据同步、
+ * 基于关键词的复合搜索以及酒店点击率的更新。
+ * </p>
+ */
 
     /**
      * 创建索引库

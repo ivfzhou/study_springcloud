@@ -8,6 +8,13 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * 订单服务启动类。
+ * <p>
+ * 提供订单创建、订单价格计算、支付处理等微服务功能。
+ * 启用了服务发现、MyBatis Mapper扫描、事务管理和缓存。
+ * </p>
+ */
 @SpringBootApplication(scanBasePackages = "cn.ivfzhou.springcloud")
 @EnableDiscoveryClient
 @EnableCaching

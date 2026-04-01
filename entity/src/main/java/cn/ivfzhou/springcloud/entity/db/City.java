@@ -14,11 +14,19 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.InnerField;
 import org.springframework.data.elasticsearch.annotations.MultiField;
 
+/**
+ * 城市实体类。
+ * <p>
+ * 对应数据库表 t_city，同时作为 Elasticsearch 中的文档对象使用。
+ * 存储城市的基本信息，并支持中文分词（ik_max_word）和拼音搜索。
+ * </p>
+ */
 @Data
 @Accessors(chain = true)
 @TableName("t_city")
 public class City implements Serializable {
 
+    /** 城市ID，主键自增 */
     @TableId(type = IdType.AUTO)
     @Field(type = FieldType.Integer)
     private Integer id;

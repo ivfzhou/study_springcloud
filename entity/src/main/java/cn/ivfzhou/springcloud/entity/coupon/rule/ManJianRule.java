@@ -5,13 +5,19 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * 满减的规则实现类
+ * 满减优惠规则实现类。
+ * <p>
+ * 当订单金额满足最低消费门槛时，直接减免固定金额。
+ * 例如：满100减20，则 mustPrice=100, jianPrice=20。
+ * </p>
  */
 @Data
 public class ManJianRule implements IRule {
 
+    /** 最低消费门槛金额 */
     private double mustPrice;
 
+    /** 满减金额 */
     private double jianPrice;
 
     /**

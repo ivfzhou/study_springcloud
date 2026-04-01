@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
+<!-- 城市模块 MyBatis 映射文件，定义城市表的自定义 SQL 操作。 -->
 <mapper namespace="cn.ivfzhou.springcloud.cityserver.dao.CityMapper">
 
     <!-- 增减城市的酒店数量。 -->

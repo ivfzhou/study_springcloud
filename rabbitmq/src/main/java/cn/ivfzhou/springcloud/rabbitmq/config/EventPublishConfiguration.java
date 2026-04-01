@@ -5,8 +5,13 @@ import org.springframework.amqp.core.DirectExchange;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
-public class EventPublishConfiguration {
+/**
+ * RabbitMQ 事件发布端/消费端公共配置类。
+ * <p>
+ * 创建 Direct 类型的交换机，事件发布者和事件接收者都需要此交换机。
+ * 交换机名称由 {@link cn.ivfzhou.springcloud.rabbitmq.constant.EventConstant#EXCHANGE_NAME} 定义。
+ * </p>
+ */
 
     /**
      * 事件发布者需要创建。

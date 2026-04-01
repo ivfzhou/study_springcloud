@@ -5,8 +5,13 @@ import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
-public class SystemException implements ErrorController {
+/**
+ * 系统级异常处理控制器。
+ * <p>
+ * 实现 Spring Boot 的 ErrorController 接口，处理未到达 Controller 层的系统级异常
+ * （如 404、500 等 HTTP 错误），根据状态码返回不同的错误页面。
+ * </p>
+ */
 
     /**
      * 处理系统异常。

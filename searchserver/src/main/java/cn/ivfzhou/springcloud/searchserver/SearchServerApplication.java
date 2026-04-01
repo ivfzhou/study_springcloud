@@ -7,7 +7,13 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication(scanBasePackages = "cn.ivfzhou.springcloud")
+/**
+ * 搜索服务启动类。
+ * <p>
+ * 提供 Elasticsearch 酒店搜索微服务功能。
+ * 启用了服务发现、事务管理、缓存和定时任务。
+ * </p>
+ */
 @EnableDiscoveryClient
 @EnableTransactionManagement
 @EnableCaching

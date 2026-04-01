@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 历史价格 Mapper XML 映射文件，当前使用 MyBatis-Plus 自动生成的 SQL，暂无自定义查询。 -->
 <mapper namespace="cn.ivfzhou.springcloud.hotelserver.dao.HistoryPriceMapper">
 
 </mapper>

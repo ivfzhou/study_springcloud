@@ -9,9 +9,14 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Component;
 
-@Slf4j
-@Component
-public class LockUtil {
+/**
+ * Redis 分布式锁工具类。
+ * <p>
+ * 基于 Redis 的 SETNX 命令 + Lua 脚本实现分布式锁，支持加锁和解锁操作。
+ * 使用 ThreadLocal 存储锁的标识值，确保每个线程只释放自己持有的锁，避免误删。
+ * 加锁失败时采用自旋方式重试（每10ms重试一次）。
+ * </p>
+ */
 
     // 加锁的lua脚本。
     private final String lockLua = "-- 锁的名称\n" +

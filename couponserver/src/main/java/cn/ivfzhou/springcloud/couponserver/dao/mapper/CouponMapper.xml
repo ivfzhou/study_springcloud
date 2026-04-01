@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 优惠券模块 MyBatis 映射文件，定义优惠券表的自定义 SQL 查询操作。 -->
 <mapper namespace="cn.ivfzhou.springcloud.couponserver.dao.CouponMapper">
 
+    <!-- 优惠券结果映射，包含基本信息和关联的优惠券发布信息。 -->
     <resultMap id="couponMap" type="cn.ivfzhou.springcloud.entity.db.Coupon">
         <id column="id" property="id"/>
         <result column="subject" property="subject"/>
@@ -15,6 +17,7 @@
         <result column="status" property="status"/>
         <result column="receive_count" property="receiveCount"/>
 
+        <!-- 关联映射：优惠券发布信息 -->
         <association property="issue" javaType="cn.ivfzhou.springcloud.entity.db.CouponIssue">
             <id column="coupon_issue_id" property="id"/>
             <result column="coupon_id" property="cid"/>
@@ -30,6 +33,7 @@
 
     </resultMap>
 
+    <!-- 根据发布方式查询优惠券列表，同时统计当前用户对每个优惠券的领取次数。 -->
     <select id="getCouponByIssueType" resultMap="couponMap">
         select
             *,
@@ -41,12 +45,14 @@
     </select>
 
 
+    <!-- 根据用户ID查询该用户已领取的优惠券列表。 -->
     <select id="getCouponByUser" resultType="cn.ivfzhou.springcloud.entity.db.Coupon">
         select * from t_coupon t1
         join t_coupon_receive t2 on t2.coupon_id = t1.id
         where t2.user_id = #{userId};
     </select>
 
+    <!-- 根据发布方式和抢券开始时间查询对应的优惠券列表。 -->
     <select id="getCouponByTime" resultType="cn.ivfzhou.springcloud.entity.db.Coupon">
         select
             *,

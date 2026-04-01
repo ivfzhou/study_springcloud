@@ -8,7 +8,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
+/**
+ * 定时任务组件。
+ * <p>
+ * 定时更新 Redis 中的当前抢购场次时间，每两小时执行一次，
+ * 用于前端判断当前可参与的抢购场次。
+ * </p>
+ */
 public class TimeTask {
 
     @Autowired

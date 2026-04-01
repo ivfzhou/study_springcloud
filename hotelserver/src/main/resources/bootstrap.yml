@@ -1,6 +1,10 @@
+# Spring Cloud Config 配置中心引导文件
 spring:
   cloud:
     config:
+      # 配置中心服务地址
       uri: http://ivfzhoudebian:8080
+      # 加载的配置文件名称（eureka、mysql、日志、rabbitmq、redis、elasticsearch、公共配置、酒店服务配置）
       name: eureka,mysql,log4j,rabbitmq,redis,elasticsearch,common,hotel
+      # 激活的环境配置
       profile: local

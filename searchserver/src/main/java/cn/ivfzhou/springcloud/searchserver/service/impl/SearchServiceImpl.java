@@ -27,7 +27,14 @@ import cn.ivfzhou.springcloud.entity.db.SearchInfo;
 import cn.ivfzhou.springcloud.feign.HotelFeign;
 import cn.ivfzhou.springcloud.searchserver.service.ISearchService;
 
-@Service
+/**
+ * 搜索服务实现类。
+ * <p>
+ * 基于 Spring Data Elasticsearch 的 ElasticsearchTemplate 实现。
+ * 核心功能包括：索引管理、酒店文档的增删改查、嵌套客房及价格信息的维护、
+ * 数据库数据同步、复合搜索（支持时间范围、价格区间、地理位置排序、点击率加权评分等）。
+ * </p>
+ */
 public class SearchServiceImpl implements ISearchService {
 
     //计算平均价格的脚本

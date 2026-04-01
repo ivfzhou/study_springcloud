@@ -1,12 +1,17 @@
+# 配置中心服务引导文件
 server:
+  # 配置中心服务运行端口
   port: 8080
 spring:
   application:
+    # 配置中心服务名称
     name: configserver
   profiles:
+    # 使用本地文件系统作为配置存储方式
     active: native
   cloud:
     config:
       server:
         native:
+          # 配置文件的搜索路径，从类路径下的 config 目录加载
           search-locations: classpath:/config/

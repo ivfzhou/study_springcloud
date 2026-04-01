@@ -8,6 +8,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 自定义注解：标记需要登录才能访问的接口方法。
+ * <p>
+ * 配合 {@link cn.ivfzhou.springcloud.common.aspect.NeedLoginAop} 切面类使用，
+ * 标注在 Controller 方法上时，AOP 会自动校验 JWT Token 有效性。
+ * 如果未登录或 Token 无效，直接返回需要登录的响应，不执行目标方法。
+ * </p>
+ * <p>
  * Target 当前注解的作用范围：
  * ElementType.CONSTRUCTOR：能够标注在构造方法上。
  * ElementType.FIELD：能够标注在属性（全局变量）上。

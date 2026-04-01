@@ -4,6 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * 日期工具类。
+ * <p>
+ * 提供日期的常用操作方法，包括获取未来日期、计算日期差、日期格式化等。
+ * </p>
+ */
 public final class DateUtil {
 
     /**

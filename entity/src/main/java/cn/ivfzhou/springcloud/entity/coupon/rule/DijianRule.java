@@ -4,8 +4,13 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
-@Data
-public class DijianRule implements IRule {
+/**
+ * 每满递减优惠规则实现类。
+ * <p>
+ * 每满指定金额递减固定金额，设有最大减免上限。
+ * 例如：每满200减10，最多减50，则 meiman=200, dijian=10, maxjian=50。
+ * </p>
+ */
 
     private double meiman; // 每满
 

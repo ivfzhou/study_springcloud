@@ -13,9 +13,13 @@ import org.springframework.stereotype.Component;
 import cn.ivfzhou.springcloud.common.constant.Consts;
 import cn.ivfzhou.springcloud.entity.db.User;
 
-@Slf4j
-@Component
-public class JwtUtil {
+/**
+ * JWT（JSON Web Token）工具类。
+ * <p>
+ * 提供 JWT Token 的生成和验签功能，用于用户登录认证。
+ * 使用 HS256 算法签名，Token 中携带用户ID和用户名信息。
+ * </p>
+ */
 
     @Value("${data.jwt.secret}")
     private String secret;

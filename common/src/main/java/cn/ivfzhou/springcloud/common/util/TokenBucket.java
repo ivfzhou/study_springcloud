@@ -12,8 +12,12 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 
 /**
- * 令牌桶。
- * TokenBucket 对象就是一个独立令牌桶。
+ * 基于 Redis 的令牌桶限流器。
+ * <p>
+ * TokenBucket 对象就是一个独立的令牌桶，通过 Redis Hash 结构存储桶的状态。
+ * 使用 Lua 脚本保证令牌获取和预支操作的原子性。
+ * 支持阻塞等待和非阻塞两种方式获取令牌。
+ * </p>
  */
 @Data
 @Slf4j

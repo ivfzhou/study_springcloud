@@ -7,7 +7,13 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication(scanBasePackages = "cn.ivfzhou.springcloud")
+/**
+ * 系统管理后台服务启动类。
+ * <p>
+ * 提供酒店管理、客房管理、优惠券管理、字典管理等后台管理功能。
+ * 启用了服务发现、事务管理、缓存和定时任务。
+ * </p>
+ */
 @EnableDiscoveryClient
 @EnableTransactionManagement
 @EnableCaching

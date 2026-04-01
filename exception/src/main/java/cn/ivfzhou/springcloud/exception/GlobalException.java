@@ -9,10 +9,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.ivfzhou.springcloud.entity.ResultData;
 
-@Slf4j
-@ControllerAdvice
-public class GlobalException {
+/**
+ * 全局异常处理器。
+ * <p>
+ * 使用 @ControllerAdvice 注解捕获所有 Controller 层抛出的异常，
+ * 根据请求类型（异步 AJAX / 同步页面跳转）返回不同的错误响应。
+ * </p>
+ */
 
+    /**
+     * 全局异常处理方法。
+     * <p>
+     * 根据请求头判断是否为异步请求（AJAX）：
+     * - 异步请求：返回 JSON 格式的错误信息
+     * - 同步请求：跳转到自定义错误页面
+     * </p>
+     *
+     * @param e       捕获的异常对象
+     * @param request 当前 HTTP 请求
+     * @return 异步请求返回 ResultData，同步请求返回 ModelAndView
+     */
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
     public Object exceptionHandler(Exception e, HttpServletRequest request) {

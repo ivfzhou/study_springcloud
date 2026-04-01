@@ -6,6 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+/**
+ * Spring Boot 启动初始化组件。
+ * <p>
+ * 实现 CommandLineRunner 接口，在应用启动完成后执行初始化逻辑。
+ * 主要用于初始化布隆过滤器，用于酒店点击率去重统计。
+ * </p>
+ */
 @Component
 public class SpringBootInit implements CommandLineRunner {
 

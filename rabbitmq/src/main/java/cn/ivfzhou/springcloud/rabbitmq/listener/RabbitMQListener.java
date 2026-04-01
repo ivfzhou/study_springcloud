@@ -10,15 +10,27 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@ConditionalOnBean(EventListener.class)
-public class RabbitMQListener {
+/**
+ * RabbitMQ 消息监听器。
+ * <p>
+ * 监听当前服务的消息队列，接收消息后根据路由键（事件类型）分发到
+ * 对应的 {@link EventListener} 实现类进行处理。
+ * 消息体使用 Java 序列化传输。
+ * 仅在容器中存在 EventListener 实现类时生效。
+ * </p>
+ */
 
     @Autowired
     private List<EventListener> eventListeners;
 
     /**
-     * 监听指定队列。
+     * 监听消息队列并分发事件处理。
+     * <p>
+     * 监听的队列为 {spring.application.name}-queue，
+     * 根据消息的路由键匹配对应的 EventListener 进行处理。
+     * </p>
+     *
+     * @param message RabbitMQ 消息对象
      */
     @RabbitListener(queues = "${spring.application.name}-queue")
     public void msgHandler(Message message) {

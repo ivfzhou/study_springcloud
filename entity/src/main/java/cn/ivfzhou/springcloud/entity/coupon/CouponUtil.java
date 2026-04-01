@@ -9,6 +9,13 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 优惠券工具类。
+ * <p>
+ * 提供优惠券相关的工具方法，主要用于将 JSON 格式的动态配置
+ * 反射解析为对应的规则（IRule）或限制（ILimit）实现类对象。
+ * </p>
+ */
 @Slf4j
 public class CouponUtil {
 

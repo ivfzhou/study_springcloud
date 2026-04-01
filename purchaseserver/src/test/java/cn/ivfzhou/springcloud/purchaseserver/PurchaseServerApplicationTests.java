@@ -8,6 +8,13 @@ import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+/**
+ * 抢购服务集成测试类。
+ * <p>
+ * 测试 Redis 流水线（Pipeline）批量插入数据的性能。
+ * 通过流水线一次性向 Redis Set 中插入20万条数据，模拟抢购场景。
+ * </p>
+ */
 @SpringBootTest
 class PurchaseServerApplicationTests {
 

@@ -6,8 +6,13 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
-@Slf4j
-public final class PinyinUtil {
+/**
+ * 拼音转换工具类。
+ * <p>
+ * 使用 pinyin4j 库将中文字符串转换为不带声调的拼音字符串。
+ * 无法转换的字符（如数字、英文、标点）保持原样输出。
+ * </p>
+ */
 
     private static final HanyuPinyinOutputFormat hanyuPinyinOutputFormat;
 
